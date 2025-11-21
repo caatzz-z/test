@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UAE National Day • December 2</title>
+  <style>
+    :root{
+      --uae-red:#CE1126;
+      --uae-green:#00732F;
+      --uae-black:#000000;
+      --uae-white:#ffffff;
+      --bg:#f7f7f7;
+      --max-width:1000px;
+      --radius:14px;
+      --glass: rgba(255,255,255,0.7);
+    }
+
+    /* Reset-ish */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#fff 0%, #f2f2f2 100%);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Page shell */
+    .card{
+      width:95%;
+      max-width:var(--max-width);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: 0 8px 30px rgba(10,10,10,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.9));
+    }
+
+    /* Flag header: left vertical red, right horizontal green/white/black */
+    .flag-header{
+      display:flex;
+      height:220px;
+      align-items:stretch;
+    }
+    .flag-polet{
+      width:96px;
+      background:var(--uae-red);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--uae-white);
+      font-weight:700;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:14px;
+    }
+    .flag-stripes{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      background:
+        linear-gradient(180deg,
+          var(--uae-green) 0% 33.33%,
+          var(--uae-white) 33.33% 66.66%,
+          var(--uae-black) 66.66% 100%);
+    }
+
+    .flag-content{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:6px;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    .title{
+      font-size:28px;
+      margin:0;
+      font-weight:800;
+    }
+    .subtitle{
+      margin:0;
+      font-size:14px;
+      opacity:0.95;
+      font-weight:600;
+    }
+    .date-pill{
+      margin-top:8px;
+      display:inline-block;
+      padding:6px 10px;
+      background:rgba(255,255,255,0.12);
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* Main content */
+    .main{
+      padding:22px;
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.98));
+    }
+
+    /* Left column - article */
+    article{
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+      padding:18px;
+      border-radius:12px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+      line-height:1.5;
+    }
+    h2{margin:0 0 10px 0; font-size:18px}
+    p{margin:0 0 10px 0; color:#222}
+
+    /* Right column - facts / actions */
+    aside{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .card-small{
+      padding:14px;
+      border-radius:10px;
+      background:var(--glass);
+      backdrop-filter: blur(6px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .facts li{margin:8px 0; font-weight:600; color:#111}
+    .colors{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .swatch{
+      width:46px;height:36px;border-radius:6px;border:1px solid rgba(0,0,0,0.06);
+      display:inline-block;
+    }
+
+    button{
+      appearance:none;
+      border:0;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:14px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+    }
+    .celebrate{
+      background: linear-gradient(90deg,var(--uae-green), var(--uae-red));
+      color:white;
+    }
+    .learn{
+      background: transparent;
+      border:2px solid rgba(0,0,0,0.06);
+      color:#111;
+    }
+
+    footer{
+      padding:14px 22px;
+      text-align:center;
+      font-size:13px;
+      color:#333;
+      background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+    }
+
+    /* Responsive */
+    @media (max-width:880px){
+      .main{grid-template-columns:1fr}
+      .flag-header{height:180px}
+      .flag-polet{width:72px}
+    }
+
+    /* small flourish badge (per user request: include 'skibidi') */
+    .skibidi-badge{
+      position:absolute;
+      right:14px;
+      top:12px;
+      background:rgba(0,0,0,0.18);
+      color: #fff;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Confetti canvas overlay */
+    #confetti{
+      position:fixed;
+      pointer-events:none;
+      left:0;top:0;width:100%;height:100%;z-index:9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-label="UAE National Day info card">
+    <div style="position:relative">
+      <div class="skibidi-badge">skibidi 😎</div>
+      <header class="flag-header" aria-hidden="false">
+        <div class="flag-polet" aria-hidden="true">
+          UAE
+        </div>
+        <div class="flag-stripes" role="img" aria-label="UAE flag colors: green, white, black stripes">
+          <div class="flag-content">
+            <h1 class="title">UAE National Day</h1>
+            <p class="subtitle">Celebrating unity, heritage, and progress</p>
+            <div class="date-pill">December 2 — Founding of the United Arab Emirates (1971)</div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div class="main">
+      <article>
+        <h2>About National Day</h2>
+        <p>
+          UAE National Day marks the union of the seven emirates and the founding of the United Arab Emirates on
+          <strong>2 December 1971</strong>. It is a national celebration of unity, culture, and the country's rapid progress.
+        </p>
+
+        <h2>Short history</h2>
+        <p>
+          On 2 December 1971, six emirates united (Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al-Quwain and Fujairah); Ras Al Khaimah
+          joined on 10 February 1972. The federation was formed under the leadership of the late Sheikh Zayed bin Sultan Al Nahyan.
+        </p>
+
+        <h2>Why the colors?</h2>
+        <p>
+          The UAE flag colors each have meaning: <strong>green</strong> (fertility, growth), <strong>white</strong> (peace),
+          <strong>black</strong> (strength of mind), and <strong>red</strong> (sacrifice and unity).
+        </p>
+
+        <h2>How people celebrate</h2>
+        <p>
+          Celebrations include parades, fireworks, cultural performances, light shows on landmarks, family gatherings,
+          and displays of the flag. Many cities light up landmarks and public spaces in the flag colors.
+        </p>
+
+        <h2>Quick timeline</h2>
+        <ul>
+          <li><strong>2 Dec 1971</strong> — Union declared (6 emirates)</li>
+          <li><strong>10 Feb 1972</strong> — Ras Al Khaimah joined</li>
+          <li><strong>Every year</strong> — National Day events, fireworks, and official ceremonies</li>
+        </ul>
+      </article>
+
+      <aside>
+        <div class="card-small" aria-labelledby="facts-title">
+          <h3 id="facts-title">Quick facts</h3>
+          <ul class="facts">
+            <li>Official date: <strong>2 December</strong></li>
+            <li>First union: <strong>1971</strong></li>
+            <li>Seven emirates in the federation</li>
+            <li>Flag adopted: <strong>1971</strong></li>
+          </ul>
+        </div>
+
+        <div class="card-small" aria-labelledby="colors-title">
+          <h3 id="colors-title">Flag colors</h3>
+          <div class="colors" aria-hidden="false" aria-label="Flag color swatches">
+            <span class="swatch" style="background:var(--uae-green)"></span>
+            <span class="swatch" style="background:var(--uae-white); border:1px solid #e5e5e5"></span>
+            <span class="swatch" style="background:var(--uae-black)"></span>
+            <span class="swatch" style="background:var(--uae-red); width:34px"></span>
+          </div>
+          <p style="margin-top:10px;font-size:13px;color:#111">Colors shown with soft gradients in the header to echo the flag design.</p>
+        </div>
+
+        <div class="card-small" aria-hidden="false">
+          <div style="display:flex;gap:8px;">
+            <button class="celebrate" id="celebrateBtn" aria-label="Celebrate UAE National Day">Celebrate 🎉</button>
+            <button class="learn" id="toggleNotes" aria-pressed="false">Toggle short notes</button>
+          </div>
+          <div id="notes" style="margin-top:12px; font-size:13px; display:none">
+            <strong>Respectful celebration:</strong> display the flag with pride and follow local guidelines during public events.
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Made with respect for UAE heritage • skibidi 😈
+    </footer>
+  </div>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script>
+    // Small confetti effect (lightweight) and simple toggles
+    (function(){
+      const celebrateBtn = document.getElementById('celebrateBtn');
+      const notes = document.getElementById('notes');
+      const toggleNotes = document.getElementById('toggleNotes');
+
+      toggleNotes.addEventListener('click', () => {
+        const visible = notes.style.display === 'block';
+        notes.style.display = visible ? 'none' : 'block';
+        toggleNotes.setAttribute('aria-pressed', String(!visible));
+      });
+
+      // Simple confetti particles using canvas
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function resize() {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function makeParticles(x,y){
+        const colors = ['#00732F','#CE1126','#000000','#FFFFFF'];
+        for(let i=0;i<80;i++){
+          particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random()-0.5) * 8,
+            vy: (Math.random()-1.5) * 8,
+            size: Math.random() * 8 + 4,
+            color: colors[Math.floor(Math.random()*colors.length)],
+            life: Math.random() * 80 + 40
+          });
+        }
+      }
+
+      function update(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(let i = particles.length - 1; i >= 0; i--){
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.18; // gravity
+          p.life--;
+          ctx.globalAlpha = Math.max(0, Math.min(1, p.life / 120));
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size * 0.6);
+          if(p.life <= 0 || p.y > canvas.height + 50){
+            particles.splice(i,1);
+          }
+        }
+        requestAnimationFrame(update);
+      }
+      update();
+
+      celebrateBtn.addEventListener('click', () => {
+        const rect = celebrateBtn.getBoundingClientRect();
+        const x = rect.left + rect.width/2;
+        const y = rect.top + rect.height/2;
+        makeParticles(x, y);
+        // small visual feedback
+        celebrateBtn.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.98)' }, { transform: 'scale(1)' }], { duration: 220 });
+      });
+
+      // Accessibility: allow keyboard activation
+      celebrateBtn.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') celebrateBtn.click(); });
+      toggleNotes.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') toggleNotes.click(); });
+    })();
+  </script>
+</body>
+</html>
